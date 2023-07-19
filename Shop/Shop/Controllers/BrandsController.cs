@@ -29,6 +29,17 @@ namespace Shop.API.Controllers
             _brandService.Edit(id,dto);
             return NoContent();
         }
+        [HttpGet("")]
+        public ActionResult<List<BrandGetDto>> Get()
+        {
+            return _brandService.Get();
+        }
+        [HttpGet("{id}")]
+        public ActionResult<BrandGetDto> Get(int id)
+        {
+            return _brandService.Get(id);
+        }
+
 
     }
 }

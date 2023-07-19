@@ -38,6 +38,8 @@ builder.Services.AddValidatorsFromAssemblyContaining<BrandCreateDtoValidator>();
 
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 

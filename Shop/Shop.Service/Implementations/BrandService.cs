@@ -42,9 +42,9 @@ namespace Shop.Service.Implementations
             Brand brand = _brandRepoitory.Get(x => x.Id == id, "Products");
             if (brand==null)
             {
-                throw new RestException(HttpStatusCode.NotFound, $"Product not found by id {id}");
+                throw new RestException(HttpStatusCode.NotFound, $"Brand not found by id {id}");
             }
-            if (_brandRepoitory.IsExist(x=>x.Name==dto.Name))
+            if (brand.Name!=dto.Name && _brandRepoitory.IsExist(x=>x.Name==dto.Name))
             {
                 throw new RestException(HttpStatusCode.BadRequest,"name", $"Name already exsist!");
             }
@@ -54,12 +54,18 @@ namespace Shop.Service.Implementations
 
         public List<BrandGetDto> Get()
         {
-            throw new NotImplementedException();
+            var datas=_brandRepoitory.GetQueryable(x => true, "Products").ToList();
+            return _mapper.Map<List<BrandGetDto>>(datas);
         }
 
         public BrandGetDto Get(int id)
         {
-            throw new NotImplementedException();
+            Brand brand = _brandRepoitory.Get(x => x.Id == id, "Products");
+            if (brand==null)
+            {
+                throw new RestException(HttpStatusCode.NotFound, $"Product not found by id {id}");
+            }
+            return _mapper.Map<BrandGetDto>(brand);
         }
 
         public void Remove(int id)
