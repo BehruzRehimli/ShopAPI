@@ -22,7 +22,8 @@ namespace Shop.API.Controllers
         {
             return _brandService.Add(dto);
         }
-        [HttpPut("{id")]
+        [HttpPut]
+        [Route("{id}")]
         public ActionResult Edit(int id,BrandEditDto dto)
         {
             _brandService.Edit(id,dto);
