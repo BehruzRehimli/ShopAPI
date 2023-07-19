@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace Shop.Service.Dtos.Brand
 {
-    public class BrandEditDto
+    public class BrandCreateDto
     {
         public string Name { get; set; }
     }
-    public class BrandEditDtoValidation : AbstractValidator<BrandEditDto>
+    public class BrandCreateDtoValidator : AbstractValidator<BrandCreateDto> 
     {
-        public BrandEditDtoValidation()
+        public BrandCreateDtoValidator()
         {
             RuleFor(x => x.Name).NotEmpty().MaximumLength(100).MinimumLength(3);
         }
+    
     }
+
 }

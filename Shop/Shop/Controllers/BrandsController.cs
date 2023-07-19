@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Core.Repositories;
+using Shop.Service.Dtos;
 using Shop.Service.Dtos.Brand;
+using Shop.Service.Interfaces;
 
 namespace Shop.API.Controllers
 {
@@ -9,14 +11,19 @@ namespace Shop.API.Controllers
     [ApiController]
     public class BrandsController : ControllerBase
     {
-        private readonly IBrandRepository _brandRepository;
+        private readonly IBrandService _brandService;
 
-        public BrandsController(IBrandRepository brandRepository)
+        public BrandsController(IBrandService brandService)
         {
-            _brandRepository = brandRepository;
+            _brandService = brandService;
+        }
+        [HttpPost("")]
+        public ActionResult<CreatedResultDto> Add(BrandCreateDto dto)
+        {
+            return _brandService.Add(dto);
         }
         //[HttpGet]
-        //[Route("")]
+        //[Route("")]   
         //public ActionResult<BrandGetDto> Get()
         //{
         //    var datas = _brandRepository.GetQueryable(x=>true,"Brand").ToList();
