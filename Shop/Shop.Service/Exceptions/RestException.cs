@@ -14,19 +14,19 @@ namespace Shop.Service.Exceptions
             Message= message;
             Code= code;
         }
-        public RestException(HttpStatusCode code,string key,string errorMessage, string? message=null)
+        public RestException(HttpStatusCode code,string key,string errorMessage, string message=null)
         {
             Code= code;
             Message = message;
             Errors = new List<RestExceptionErrorItem>() { new RestExceptionErrorItem(key, errorMessage) };
         }
-        public RestException(HttpStatusCode code,List<RestExceptionErrorItem> errors,string? message)
+        public RestException(HttpStatusCode code,List<RestExceptionErrorItem> errors,string message=null)
         {
             Code= code;
             Errors = errors;
             Message= message;
         }
-        public string? Message { get; set; }
+        public string Message { get; set; }
         public HttpStatusCode Code { get; set; }
         public List<RestExceptionErrorItem> Errors { get; set; }
         

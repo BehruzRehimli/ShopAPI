@@ -22,13 +22,12 @@ namespace Shop.API.Controllers
         {
             return _brandService.Add(dto);
         }
-        //[HttpGet]
-        //[Route("")]   
-        //public ActionResult<BrandGetDto> Get()
-        //{
-        //    var datas = _brandRepository.GetQueryable(x=>true,"Brand").ToList();
+        [HttpPut("{id")]
+        public ActionResult Edit(int id,BrandEditDto dto)
+        {
+            _brandService.Edit(id,dto);
+            return NoContent();
+        }
 
-        //    return 
-        //}
     }
 }

@@ -20,8 +20,8 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
 {
     options.InvalidModelStateResponseFactory = context =>
     {
-        var errors = context.ModelState.Where(x => x.Value.Errors.Count() > 0)
-            .Select(x => new RestExceptionErrorItem(x.Key, x.Value.Errors.First().ErrorMessage)).ToList();
+        var errors = context.ModelState.Where(x => x.Value?.Errors.Count() > 0)
+            .Select(x => new RestExceptionErrorItem(x.Key, x.Value?.Errors.First().ErrorMessage)).ToList();
 
         return new BadRequestObjectResult(new { message = (string)null, errors = errors });
 
